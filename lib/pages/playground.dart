@@ -136,6 +136,7 @@ class _PlaygroundState extends State<Playground> {
           ],
         ),
       ),
+      floatingActionButton: realStars.length >= 3 ? FloatingActionButton(onPressed: () {}, tooltip: "Search Constellation", child: Icon(Icons.search)) : null
     );
   }
 }

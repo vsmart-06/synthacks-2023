@@ -8,7 +8,6 @@ void main() {
       routes: {
         "/": (context) => Playground(),
       }
-      //hello world
     )
   );
 }
