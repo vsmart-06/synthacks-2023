@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "dart:math";
 
 class Playground extends StatefulWidget {
   const Playground({super.key});
@@ -105,6 +106,19 @@ class _PlaygroundState extends State<Playground> {
                                           )
                                         );
                                     });
+                                  }
+                                  else if (crossSelect) {
+                                    List<double> xy = [mouseLocation[0]-10, mouseLocation[1]-100];
+                                    for (Positioned? star in realStars) {
+                                      num squareDistance = pow(xy[0]-star!.left!.toDouble(), 2) + pow(xy[1]-star.top!.toDouble(), 2);
+                                      double distance = sqrt(squareDistance);
+                                      if (distance < 50) {
+                                        setState(() {
+                                          realStars.remove(star);                                   
+                                        });
+                                        break;
+                                      }
+                                    }
                                   }
                                 },
                                 icon: Icon(
