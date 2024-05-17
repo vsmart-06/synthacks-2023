@@ -3,6 +3,8 @@ import "dart:math";
 import 'package:screenshot/screenshot.dart';
 import "package:http/http.dart";
 import "dart:ui";
+import 'package:image/image.dart' as img_pkg;
+import "dart:convert";
 
 class Playground extends StatefulWidget {
   const Playground({super.key});
@@ -20,7 +22,10 @@ class _PlaygroundState extends State<Playground> {
   List<double> mouseLocation = [0, 0];
 
   ScreenshotController screenshotController = ScreenshotController();
+  
+  List<Image> img = [];
 
+  String name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +140,7 @@ class _PlaygroundState extends State<Playground> {
                                 ),
                               )
                             : Container(),
+                        img.isNotEmpty ? img[0] : Container()
                       ],
                     ),
                   ),
@@ -146,7 +152,13 @@ class _PlaygroundState extends State<Playground> {
       ),
       floatingActionButton: realStars.length >= 3 ? FloatingActionButton(onPressed: () async {
         var image = await screenshotController.capture();
-        await post(Uri.parse("http://127.0.0.1:5000/constellation"), body: {"image": image});
+        var img = img_pkg.decodeImage(image!);
+        var img_array = img!.toUint8List();
+        var response = await post(Uri.parse("http://127.0.0.1:5000/constellations"), body: {"image": img_array.toString(), "dimensions": "(${img.width}, ${img.height})"});
+        setState(() {
+          name = jsonDecode(response.body)["constellation"];
+          print(name);
+        });
       }, tooltip: "Search Constellation", child: Icon(Icons.search)) : null
     );
   }

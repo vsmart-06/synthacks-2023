@@ -7,18 +7,28 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<marquee direction = 'left'><h1>API is up and running</h1></marquee>"
+    return "<marquee direction='left'><h1>API is up and running</h1></marquee>"
 
 
-@app.route("/constellation", methods=["POST"])
-def constellation():
+@app.route("/constellations", methods=["POST"])
+def constellations():
     body = request.form
 
-    print(body)
-    img = Image.fromarray(np.uint8(body.get("image")))
+    img_bytes = eval(body.get("image"))
+    dimensions = list(eval(body.get("dimensions")))
 
+    image_size = (int(dimensions[1]), int(dimensions[0]), 4)
 
+    img_array = np.uint8(img_bytes)
+
+    img_array = np.reshape(img_array, image_size)
+    img_array = img_array[..., :3]
+
+    img = Image.fromarray(img_array)
     img.save("image.png")
+
+    return {"constellation": "Orion"}
+
 
 
 app.run(debug=True)

@@ -6,7 +6,7 @@ void main() {
   runApp(
     MaterialApp(
       routes: {
-        "/": (context) => Playground(),
+        "/": (context) => const Playground(),
       }
     )
   );
