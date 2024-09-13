@@ -1,6 +1,6 @@
 # SpaceJam23
 
-The final Synthacks-2023 project by Dhruv Mittal, Nalin Mathur, Prajwal Reddy, and Srivishnu Vusirikala.
+The final Synthacks-2023 project that won *Best Idea*, by Dhruv Mittal, Nalin Mathur, Prajwal Reddy, and Srivishnu Vusirikala.
 
 Imagine you're sitting under the night sky, peering at those glittering dots of light above you. You seem to be able to make out certain patterns that appear between the positions of the stars, but you aren't really able to envision what the shape might be. You remember how the stars are placed, and now you want to look up what the constellation is. However, you do not know where and how to start. Well, with our app, you have your answer right at your fingertips!
 
